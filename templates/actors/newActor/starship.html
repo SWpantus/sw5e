@@ -104,18 +104,18 @@
                     <ol>
                         {{#each data.abilities as |ability id|}}
                         <li class="ability {{#if ability.proficient}}proficient{{/if}}" data-ability="{{id}}">
-                            <h2 class="ability-name rollable">{{ability.label}}</h4>
+                            <h2 class="ability-name rollable">{{ability.label}}</h2>
                                 <input class="ability-score" name="data.abilities.{{id}}.value" type="text"
                                     value="{{ability.value}}" data-dtype="Number" placeholder="10" />
                                 <div class="ability-modifiers">
                                     <span class="ability-mod"
-                                        title="Modifier">{{numberFormat ability.mod decimals=0 sign=true}}</span>
+                                        title="{{ localize 'SW5E.Modifier' }}">{{numberFormat ability.mod decimals=0 sign=true}}</span>
                                     <input type="hidden" name="data.abilities.{{id}}.proficient"
                                         value="{{ability.proficient}}" data-dtype="Number" />
                                     <button class="proficiency-toggle ability-proficiency"
                                         title="Proficiency">{{{ability.icon}}}</button>
                                     <span class="ability-save"
-                                        title="Saving Throw">{{numberFormat ability.save decimals=0 sign=true}}</span>
+                                        title="{{ localize 'SW5E.SavingThrow' }}">{{numberFormat ability.save decimals=0 sign=true}}</span>
                                 </div>
                         </li>
                         {{/each}}

@@ -81,7 +81,7 @@
   flex: 4;
 }
 /* ----------------------------------------- */
-/*  All DnD5e Apps                           */
+/*  All SW5e Apps                           */
 /* ----------------------------------------- */
 .sw5e {
   /* ----------------------------------------- */
@@ -91,9 +91,7 @@
   /* Tags */
 }
 .sw5e .window-content {
-  background: linear-gradient(90deg, #afc6d6 0%, #D6D6D6 30%, #D6D6D6 70%, #afc6d6);
   font-size: 13px;
-  color: #191813;
 }
 .sw5e input[type="text"],
 .sw5e input[type="number"],
@@ -114,6 +112,8 @@
 .sw5e select:disabled,
 .sw5e textarea:disabled {
   color: #4b4a44;
+  border: 1px solid transparent !important;
+  outline: none !important;
 }
 .sw5e input:disabled:hover,
 .sw5e select:disabled:hover,
@@ -128,24 +128,6 @@
 .sw5e button {
   background: rgba(0, 0, 0, 0.1);
   border: 2px groove #eeede0;
-}
-.sw5e label.checkbox {
-  flex: auto;
-  padding: 0;
-  margin: 0;
-  height: 22px;
-  line-height: 22px;
-  font-size: 11px;
-}
-.sw5e label.checkbox > input[type="checkbox"] {
-  width: 16px;
-  height: 16px;
-  margin: 0 2px 0 0;
-  position: relative;
-  top: 4px;
-}
-.sw5e label.checkbox.right > input[type="checkbox"] {
-  margin: 0 0 0 2px;
 }
 .sw5e .form-group label {
   flex: 2;
@@ -179,11 +161,12 @@
 .sw5e .form-group .form-fields > *:last-child {
   margin-right: 0;
 }
-.sw5e .form-group.stacked label {
+.sw5e .form-group.stacked > label {
   flex: 0 0 100%;
   margin: 0;
 }
-.sw5e .form-group.stacked label.checkbox {
+.sw5e .form-group.stacked label.checkbox,
+.sw5e .form-group.stacked label.radio {
   flex: auto;
   text-align: left;
 }
@@ -207,6 +190,26 @@
   background: rgba(0, 0, 0, 0.05);
 }
 /* ----------------------------------------- */
+/*  Hit Dice Config Sheet Specifically       */
+/* ----------------------------------------- */
+.sw5e.hd-config .form-group button.increment,
+.sw5e.hd-config .form-group button.decrement {
+  flex: 0 0 1rem;
+  line-height: 1rem;
+}
+.sw5e.hd-config .form-group button.decrement {
+  margin-right: 0;
+}
+.sw5e.hd-config .form-group span.sep {
+  margin: 0;
+}
+.sw5e.hd-config .form-group input {
+  flex: 0 0 2rem;
+  text-align: center;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+/* ----------------------------------------- */
 /*  Entity Sheets Specifically               */
 /* ----------------------------------------- */
 .sw5e.sheet {
@@ -215,6 +218,9 @@
   /* ----------------------------------------- */
   /* ----------------------------------------- */
   /*  TinyMCE                                  */
+  /* ----------------------------------------- */
+  /* ----------------------------------------- */
+  /*  Notifications                            */
   /* ----------------------------------------- */
   /* ----------------------------------------- */
   /*  Sheet Header                             */
@@ -294,6 +300,22 @@
 .sw5e.sheet .editor .tox-toolbar__primary {
   background: none;
 }
+.sw5e.sheet .warnings,
+.sw5e.sheet .info {
+  flex: 0 0 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.sw5e.sheet .warnings .notification,
+.sw5e.sheet .info .notification {
+  font-family: "Signika", sans-serif;
+  font-weight: normal;
+  font-size: 13px;
+  box-shadow: none;
+  padding: 2px 8px;
+  margin-bottom: 2px;
+}
 .sw5e.sheet .sheet-header {
   flex: 0 0 100px;
   border-bottom: 2px groove #eeede0;
@@ -305,6 +327,16 @@
   font-family: 'Russo One';
   font-size: 20px;
   font-weight: 400;
+}
+.sw5e.sheet .sheet-header .header-details .summary select {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  font-family: 'Russo One';
+  font-size: 20px;
+  font-weight: 400;
+  text-transform: capitalize;
+  font-weight: 100;
 }
 .sw5e.sheet .sheet-header h1 {
   flex: 1;
@@ -401,7 +433,8 @@
 .sw5e.sheet .traits {
   margin: 5px 0 0;
 }
-.sw5e.sheet .traits .trait-selector {
+.sw5e.sheet .traits .trait-selector,
+.sw5e.sheet .traits .proficiency-selector {
   flex: 0 0 16px;
   padding: 2px 0;
   color: #999;
@@ -499,19 +532,134 @@
 /* ----------------------------------------- */
 /* Trait Selector
 /* ----------------------------------------- */
-#trait-selector .trait-list {
+.trait-selector .trait-list {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-#trait-selector input[type="text"] {
+.trait-selector .trait-list li ol.trait-list {
+  margin-left: 1.5em;
+}
+.trait-selector input[type="text"] {
   height: 24px;
   margin: 2px;
 }
 /* ----------------------------------------- */
-/* HUD
+/*  Property Attribution                     */
 /* ----------------------------------------- */
-.placeable-hud .control-icon {
+.property-attribution {
+  display: none;
+  position: absolute;
+  padding: 3px;
+  border: 1px solid #000;
+  border-radius: 3px;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+  color: #c9c7b8;
+  text-align: left;
+  z-index: 1;
+}
+.property-attribution table {
+  margin: 0;
+  border: 0;
+}
+.property-attribution table tr {
+  background-color: inherit;
+}
+.property-attribution table td {
+  padding: 3px;
+}
+.property-attribution table tr.total > td {
+  font-weight: 600;
+  padding-top: 5px;
+  border-top: 1px solid #7a7971;
+}
+.property-attribution table td.attribution-value {
+  width: 20%;
+  padding-right: 5px;
+  text-align: right;
+  font-weight: 600;
+}
+.property-attribution table td::before {
+  opacity: 0.6;
+}
+.property-attribution table td.mode-1::before {
+  content: "×";
+}
+.property-attribution table td.mode-2::before {
+  content: "+";
+}
+.property-attribution table td.mode-2.negative::before {
+  content: "−";
+  margin-right: -1px;
+}
+.property-attribution table td.mode-3::before {
+  content: "↓";
+}
+.property-attribution table td.mode-4::before {
+  content: "↑";
+}
+/* ----------------------------------------- */
+/*  Actor Type Config Sheet Specifically     */
+/* ----------------------------------------- */
+.actor-type .trait-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+.actor-type .trait-list li {
+  flex-basis: 50%;
+  flex-grow: 1;
+}
+.actor-type .trait-list li.form-group {
+  flex-basis: 100%;
+}
+.actor-type label.radio {
+  display: flex;
+  flex: auto;
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: normal;
+}
+.actor-type label.radio > input[type="radio"] {
+  margin: 0 5px 0 0;
+}
+.actor-type li.custom-type input[type="radio"] {
+  display: none;
+}
+/* ----------------------------------------- */
+/*  Armor Config Sheet Specifically          */
+/* ----------------------------------------- */
+.sw5e.actor-armor-config .ac-field input {
+  font-size: 3em;
+  text-align: center;
+}
+/* ----------------------------------------- */
+/*  Add Feature Prompt Specifically          */
+/* ----------------------------------------- */
+.sw5e.select-items-prompt {
+  /* ----------------------------------------- */
+  /* HUD
+/* ----------------------------------------- */
+}
+.sw5e.select-items-prompt .dialog-content {
+  margin-bottom: 1em;
+}
+.sw5e.select-items-prompt .items-list {
+  margin-top: 0.5em;
+}
+.sw5e.select-items-prompt .item-name > label,
+.sw5e.select-items-prompt .item-image,
+.sw5e.select-items-prompt input {
+  cursor: pointer;
+}
+.sw5e.select-items-prompt .item-name > label {
+  align-items: center;
+}
+.sw5e.select-items-prompt .window-content {
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.sw5e.select-items-prompt .placeable-hud .control-icon {
   box-sizing: content-box;
   width: 40px;
   flex: 0 0 40px;
@@ -519,14 +667,14 @@
   font-size: 28px;
   line-height: 40px;
   text-align: center;
-  color: #FBF4F4;
+  color: #fbf4f4;
   background: rgba(0, 0, 0, 0.6);
   box-shadow: 0 0 15px #000;
   border: 1px solid #333;
   border-radius: 8px;
   pointer-events: all;
 }
-#token-hud .status-effects {
+.sw5e.select-items-prompt #token-hud .status-effects {
   visibility: hidden;
   position: absolute;
   left: 50px;
@@ -535,7 +683,7 @@
   padding: 3px;
   box-sizing: content-box;
   width: 100px;
-  color: #FBF4F4;
+  color: #fbf4f4;
   grid-template-columns: 25px 25px 25px 25px;
   background: rgba(0, 0, 0, 0.6);
   box-shadow: 0 0 15px #000;
@@ -574,6 +722,9 @@
   /*  Powerbook                                */
   /* ----------------------------------------- */
   /* ----------------------------------------- */
+  /*  Features Tab                             */
+  /* ----------------------------------------- */
+  /* ----------------------------------------- */
   /*  TinyMCE                                  */
   /* ----------------------------------------- */
 }
@@ -609,6 +760,10 @@
   height: 24px;
   line-height: 24px;
 }
+.sw5e.sheet.actor .sheet-header .summary select {
+  position: relative;
+  top: -4px;
+}
 .sw5e.sheet.actor .sheet-header .attributes {
   flex: 0 0 100%;
   margin: 0;
@@ -623,26 +778,34 @@
 .sw5e.sheet.actor .sheet-header .attributes .attribute:last-child {
   border-right: none;
 }
+.sw5e.sheet.actor .sheet-header .attributes .attribute .attribute-name {
+  position: relative;
+}
 .sw5e.sheet.actor .sheet-header .attributes .attribute .attribute-value {
   height: 30px;
   line-height: 30px;
 }
-.sw5e.sheet.actor .sheet-header .attributes .movement h4.attribute-name {
-  position: relative;
-}
-.sw5e.sheet.actor .sheet-header .attributes .movement .config-button {
+.sw5e.sheet.actor .sheet-header .attributes .attribute .config-button {
   position: absolute;
   display: none;
-  right: 0;
-  top: 1px;
-  font-size: 12px;
+  right: -6px;
+  top: -3px;
+  font-size: 10px;
   font-weight: normal;
 }
-.sw5e.sheet.actor .sheet-header .attributes .movement:hover .config-button {
+.sw5e.sheet.actor .sheet-header .attributes .attribute:hover .config-button {
   display: block;
 }
-.sw5e.sheet.actor .sheet-header .attributes input.temphp {
+.sw5e.sheet.actor .sheet-header .attributes .attribute input.temphp {
   width: 48%;
+}
+.sw5e.sheet.actor .sheet-header .attributes .attribute .property-attribution {
+  min-width: 150px;
+  top: 50px;
+  font-family: Signika, sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1rem;
 }
 .sw5e.sheet.actor h4.box-title {
   height: 18px;
@@ -699,6 +862,12 @@
   font-size: 12px;
   font-weight: 400;
   white-space: nowrap;
+}
+.sw5e.sheet.actor .attributable {
+  position: relative;
+}
+.sw5e.sheet.actor .attributable:hover .tooltip {
+  display: block;
 }
 .sw5e.sheet.actor .ability-scores {
   flex: 0 0 100px;
@@ -981,7 +1150,7 @@
   border-top: 1px solid #c9c7b8;
 }
 .sw5e.sheet.actor .inventory-list .item-summary h2 {
-  font-family: 'Russo One';
+  font-family: "Russo One";
   font-size: 20px;
   font-weight: 400;
   text-transform: uppercase;
@@ -1015,7 +1184,7 @@
   font-size: 13px;
   line-height: 12px;
   text-align: right;
-  color: #EEE;
+  color: #eee;
   text-shadow: 0 0 5px #000;
 }
 .sw5e.sheet.actor .encumbrance .encumbrance-breakpoint {
@@ -1112,6 +1281,9 @@
 }
 .sw5e.sheet.actor .powerbook-empty .item-controls {
   flex: 1;
+}
+.sw5e.sheet.actor .features i.original-class {
+  color: #4b4a44;
 }
 .sw5e.sheet.actor .editor {
   padding: 0 8px;
@@ -1229,16 +1401,16 @@
 .sw5e.sheet.item .sheet-body .smalltable td:nth-child(even) {
   width: 150px;
   margin: 0.5em 0.5em;
-  padding: 0px 10px 0px 10px;
+  padding: 0 10px 0 10px;
   text-align: left;
 }
 .sw5e.sheet.item .sheet-body .smalltable thead {
-  border-bottom: 0px;
+  border-bottom: 0;
 }
 .sw5e.sheet.item .sheet-body .smalltable th {
   color: #000000;
   text-shadow: none;
-  border-bottom: 0px;
+  border-bottom: 0;
   background-color: #bdc8cc;
   text-transform: none;
   font-weight: bold;
@@ -1252,12 +1424,12 @@
 .sw5e.sheet.item .sheet-body .smalltable th:nth-child(even) {
   width: 150px;
   margin: 0.5em 0.5em;
-  padding: 0px 10px 0px 10px;
+  padding: 0 10px 0 10px;
   text-align: left;
 }
 .sw5e.sheet.item .sheet-body .medtable table {
   width: 500px;
-  border: 0px;
+  border: 0;
   margin: 0.5em 0.5em;
 }
 .sw5e.sheet.item .sheet-body .medtable td:nth-child(odd) {
@@ -1268,16 +1440,16 @@
 .sw5e.sheet.item .sheet-body .medtable td:nth-child(even) {
   width: 450px;
   margin: 0.5em 0.5em;
-  padding: 0px 10px 0px 0px;
+  padding: 0 10px 0 0;
   text-align: left;
 }
 .sw5e.sheet.item .sheet-body .medtable thead {
-  border-bottom: 0px;
+  border-bottom: 0;
 }
 .sw5e.sheet.item .sheet-body .medtable th {
   color: #000000;
   text-shadow: none;
-  border-bottom: 0px;
+  border-bottom: 0;
   background-color: #bdc8cc;
   text-transform: none;
   font-weight: bold;
@@ -1290,8 +1462,8 @@
   text-align: left;
 }
 .sw5e.sheet.item .sheet-body .classtable blockquote {
-  border-left: 0px;
-  border-right: 0px;
+  border-left: 0;
+  border-right: 0;
   background-color: #bdc8cc;
   width: 600px;
 }
@@ -1305,8 +1477,8 @@
   width: 100%;
   border-collapse: collapse;
   background: rgba(0, 0, 0, 0.05);
-  border-left: 0px;
-  border-right: 0px;
+  border-left: 0;
+  border-right: 0;
   border-top: 0;
   border-bottom: 0;
   margin: 0.5em 0;
@@ -1316,7 +1488,7 @@
 .sw5e.sheet.item .sheet-body .classtable thead {
   color: #000000;
   text-shadow: none;
-  border-bottom: 0px;
+  border-bottom: 0;
   background-color: #bdc8cc;
   text-transform: none;
   font-style: normal;
@@ -1325,7 +1497,7 @@
 .sw5e.sheet.item .sheet-body .classtable th {
   color: #000000;
   text-shadow: none;
-  border-bottom: 0px;
+  border-bottom: 0;
   background-color: #bdc8cc;
   text-transform: none;
   font-style: normal;
@@ -1360,7 +1532,7 @@
   width: 100%;
   line-height: 18px;
   margin-bottom: 15px;
-  border: 0 0 0 0;
+  border: 0;
   border-bottom: none;
   overflow-x: auto;
 }
@@ -1745,7 +1917,7 @@
   text-align: right;
   padding-right: 5px;
 }
-.sw5e.sheet.actor.character .resource .attribute-value input {
+.sw5e.sheet.actor.character .resource .attribute-value > input {
   flex: 0 0 25%;
 }
 .sw5e.sheet.actor.character .resource .attribute-value label.recharge {
@@ -1755,6 +1927,7 @@
   font-size: 11px;
   text-align: center;
   color: #4b4a44;
+  align-items: center;
 }
 .sw5e.sheet.actor.character .resource .attribute-value label.recharge input[type="checkbox"] {
   height: 14px;
@@ -1845,13 +2018,41 @@
   padding: 0;
   text-align: center;
 }
-.sw5e.sheet.actor.npc .header-exp .experience {
+.sw5e.sheet.actor.npc .header-exp .experience,
+.sw5e.sheet.actor.npc .header-exp .proficiency {
   flex: 0 0 18px;
   color: #7a7971;
   font-size: 16px;
 }
+.sw5e.sheet.actor.npc .header-exp .proficiency {
+  margin-top: -0.3em;
+}
 .sw5e.sheet.actor.npc .summary {
   font-size: 18px;
+}
+.sw5e.sheet.actor.npc .summary li.creature-type {
+  display: flex;
+  justify-content: space-between;
+  width: 1em;
+  padding: 0 3px;
+}
+.sw5e.sheet.actor.npc .summary li.creature-type span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sw5e.sheet.actor.npc .summary li.creature-type .config-button {
+  display: none;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 2em;
+}
+.sw5e.sheet.actor.npc .summary li.creature-type:hover .config-button {
+  display: block;
+}
+.sw5e.sheet.actor.vehicle {
+  min-width: 720px;
+  min-height: 680px;
 }
 .sw5e.sheet.actor.vehicle .features .item-controls {
   flex: 0 0 68px;

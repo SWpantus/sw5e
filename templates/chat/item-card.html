@@ -27,7 +27,7 @@
         {{/if}}
 
         {{#if hasSave}}
-        <button data-action="save" data-ability="{{data.save.ability}}" disabled>
+        <button data-action="save" data-ability="{{data.save.ability}}">
             {{ localize "SW5E.SavingThrow" }} {{labels.save}}
         </button>
         {{/if}}
@@ -38,6 +38,10 @@
 
         {{#if hasAreaTarget}}
         <button data-action="placeTemplate">{{ localize "SW5E.PlaceTemplate" }}</button>
+        {{/if}}
+
+        {{#if isTool}}
+            <button data-action="toolCheck" data-ability="{{data.ability.value}}">{{ localize "SW5E.Use" }} {{item.name}}</button>
         {{/if}}
     </div>
 
