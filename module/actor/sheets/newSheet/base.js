@@ -125,8 +125,8 @@ export default class ActorSheet5e extends ActorSheet {
                     skl.label = CONFIG.SW5E.starshipSkills[s];
                 } else {
                     skl.label = CONFIG.SW5E.skills[s];
-                    skl.baseValue = source.skills[s].value;
                 }
+                skl.baseValue = source.skills[s].value;
             }
         }
 
@@ -708,9 +708,7 @@ export default class ActorSheet5e extends ActorSheet {
 
     /** @override */
     async _onDropActor(event, data) {
-        const canPolymorph =
-            game.user.isGM ||
-            (this.actor.isOwner && game.settings.get("sw5e", "allowPolymorphing"));
+        const canPolymorph = game.user.isGM || (this.actor.isOwner && game.settings.get("sw5e", "allowPolymorphing"));
         if (!canPolymorph) return false;
 
         // Get the target actor
