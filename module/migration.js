@@ -216,7 +216,9 @@ export const migrateActorData = async function (actor) {
     }
 
     // migrate powers last since it relies on item classes being migrated first.
-    _migrateActorPowers(actor, updateData);
+    if (["character", "npc"].includes(actor.type)) {
+        _migrateActorPowers(actor, updateData);
+    }
 
     return updateData;
 };
@@ -307,7 +309,7 @@ export const migrateSceneData = async function (scene) {
             } else if (!t.actorLink) {
                 const actorData = duplicate(t.actorData);
                 actorData.type = token.actor?.type;
-                const update = migrateActorData(actorData);
+                const update = await migrateActorData(actorData);
                 ["items", "effects"].forEach((embeddedName) => {
                     if (!update[embeddedName]?.length) return;
                     const updates = new Map(update[embeddedName].map((u) => [u._id, u]));
@@ -389,7 +391,7 @@ function _updateNPCData(actor) {
                 // get actor to create new powers
                 const liveActor = game.actors.get(actor._id);
                 // create the powers on the actor
-                liveActor.createEmbeddedDocument("Item", newPowers);
+                liveActor.createEmbeddedDocuments("Item", newPowers);
 
                 // set flag to check to see if migration has been done so we don't do it again.
                 liveActor.setFlag("sw5e", "dataVersion", "1.2.4");

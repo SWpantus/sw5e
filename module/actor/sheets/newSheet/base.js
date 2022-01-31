@@ -138,8 +138,8 @@ export default class ActorSheet5e extends ActorSheet {
                     skl.label = CONFIG.SW5E.starshipSkills[s];
                 } else {
                     skl.label = CONFIG.SW5E.skills[s];
-                    skl.baseValue = source.skills[s].value;
                 }
+                skl.baseValue = source.skills[s].value;
             }
         }
 
@@ -402,7 +402,7 @@ export default class ActorSheet5e extends ActorSheet {
      * Insert a power into the powerbook object when rendering the character sheet.
      * @param {object} data      Copy of the Actor data being prepared for display.
      * @param {object[]} powers  Powers to be included in the powerbook.
-     * @param {string}  school  The school of the powerbook being prepared.
+     * @param {string} school    The school of the powerbook being prepared.
      * @returns {object[]}       Powerbook sections in the proper order.
      * @private
      */

@@ -228,11 +228,6 @@ Hooks.once("setup", function () {
         "proficiencyLevels",
         "senses",
         "skills",
-        // "starshipRolessm",
-        // "starshipRolesmed",
-        // "starshipRoleslg",
-        // "starshipRoleshuge",
-        // "starshipRolesgrg",
         "starshipSkills",
         "powerComponents",
         "powerLevels",
@@ -269,11 +264,6 @@ Hooks.once("setup", function () {
         "polymorphSettings",
         "senses",
         "skills",
-        // "starshipRolessm",
-        // "starshipRolesmed",
-        // "starshipRoleslg",
-        // "starshipRoleshuge",
-        // "starshipRolesgrg",
         "starshipSkills",
         "powerScalingModes",
         "powerSchools",
@@ -463,6 +453,15 @@ Hooks.on("ActorSheet5eCharacterNew", (app, html, data) => {
 // FIXME: This helper is needed for the vehicle sheet. It should probably be refactored.
 Handlebars.registerHelper("getProperty", function (data, property) {
     return getProperty(data, property);
+});
+
+Handlebars.registerHelper("round", function (value) {
+    return Math.floor(value);
+});
+
+Handlebars.registerHelper("debug", function (value) {
+    console.log(value);
+    return value;
 });
 
 function setFolderBackground(html) {

@@ -6,9 +6,9 @@ export {default as DamageRoll} from "./dice/damage-roll.js";
  *
  * @param {string} formula                          The original roll formula
  * @param {object} [options]                        Formatting options
- * @param {boolean} [options.preserveFlavor=false]   Preserve flavor text in the simplified formula
+ * @param {boolean} [options.preserveFlavor=false]  Preserve flavor text in the simplified formula
  *
- * @returns {string}  The resulting simplified formula
+ * @returns {string}                                The resulting simplified formula
  */
 export function simplifyRollFormula(formula, {preserveFlavor = false} = {}) {
     // Create a new roll and verify that the formula is valid before attempting simplification.
@@ -184,33 +184,33 @@ function _separateAnnotatedTerms(terms) {
  * This chooses the default options of a normal attack with no bonus, Advantage, or Disadvantage respectively
  *
  * @param {object} [config]
- * @param {string[]} [config.parts]          The dice roll component parts, excluding the initial d20
- * @param {object} [config.data]             Actor or item data against which to parse the roll
+ * @param {string[]} [config.parts]               The dice roll component parts, excluding the initial d20
+ * @param {object} [config.data]                  Actor or item data against which to parse the roll
  *
- * @param {boolean} [config.advantage]       Apply advantage to the roll (unless otherwise specified)
- * @param {boolean} [config.disadvantage]    Apply disadvantage to the roll (unless otherwise specified)
- * @param {number} [config.critical]         The value of d20 result which represents a critical success
- * @param {number} [config.fumble]           The value of d20 result which represents a critical failure
- * @param {number} [config.targetValue]      Assign a target value against which the result of this roll
- *                                           should be compared
- * @param {boolean} [config.elvenAccuracy]   Allow Elven Accuracy to modify this roll?
- * @param {boolean} [config.halflingLucky]   Allow Halfling Luck to modify this roll?
- * @param {boolean} [config.reliableTalent]  Allow Reliable Talent to modify this roll?
+ * @param {boolean} [config.advantage]            Apply advantage to the roll (unless otherwise specified)
+ * @param {boolean} [config.disadvantage]         Apply disadvantage to the roll (unless otherwise specified)
+ * @param {number} [config.critical]              The value of d20 result which represents a critical success
+ * @param {number} [config.fumble]                The value of d20 result which represents a critical failure
+ * @param {number} [config.targetValue]           Assign a target value against which the result of this roll
+ *                                                should be compared
+ * @param {boolean} [config.elvenAccuracy]        Allow Elven Accuracy to modify this roll?
+ * @param {boolean} [config.halflingLucky]        Allow Halfling Luck to modify this roll?
+ * @param {boolean} [config.reliableTalent]       Allow Reliable Talent to modify this roll?
  *
  * @param {boolean} [config.chooseModifier=false] Choose the ability modifier that should be used when the roll is made
- * @param {boolean} [config.fastForward=false] Allow fast-forward advantage selection
- * @param {Event} [config.event]             The triggering event which initiated the roll
- * @param {string} [config.template]         The HTML template used to render the roll dialog
- * @param {string} [config.title]            The dialog window title
- * @param {object} [config.dialogOptions]    Modal dialog options
+ * @param {boolean} [config.fastForward=false]    Allow fast-forward advantage selection
+ * @param {Event} [config.event]                  The triggering event which initiated the roll
+ * @param {string} [config.template]              The HTML template used to render the roll dialog
+ * @param {string} [config.title]                 The dialog window title
+ * @param {object} [config.dialogOptions]         Modal dialog options
  *
- * @param {boolean} [config.chatMessage=true] Automatically create a Chat Message for the result of this roll
- * @param {object} [config.messageData={}] Additional data which is applied to the created Chat Message, if any
- * @param {string} [config.rollMode]       A specific roll mode to apply as the default for the resulting roll
- * @param {object} [config.speaker]        The ChatMessage speaker to pass when creating the chat
- * @param {string} [config.flavor]         Flavor text to use in the posted chat message
+ * @param {boolean} [config.chatMessage=true]     Automatically create a Chat Message for the result of this roll
+ * @param {object} [config.messageData={}]        Additional data which is applied to the created Chat Message, if any
+ * @param {string} [config.rollMode]              A specific roll mode to apply as the default for the resulting roll
+ * @param {object} [config.speaker]               The ChatMessage speaker to pass when creating the chat
+ * @param {string} [config.flavor]                Flavor text to use in the posted chat message
  *
- * @returns {Promise<D20Roll|null>}  The evaluated D20Roll, or null if the workflow was cancelled
+ * @returns {Promise<D20Roll|null>}               The evaluated D20Roll, or null if the workflow was cancelled
  */
 export async function d20Roll({
     parts = [],
@@ -315,31 +315,31 @@ function _determineAdvantageMode({event, advantage = false, disadvantage = false
  * This chooses the default options of a normal attack with no bonus, Critical, or no bonus respectively
  *
  * @param {object} [config]
- * @param {string[]} [config.parts]        The dice roll component parts, excluding the initial d20
- * @param {object} [config.data]           Actor or item data against which to parse the roll
+ * @param {string[]} [config.parts]                 The dice roll component parts, excluding the initial d20
+ * @param {object} [config.data]                    Actor or item data against which to parse the roll
  *
- * @param {boolean} [config.critical=false] Flag this roll as a critical hit for the purposes of
- *                                          fast-forward or default dialog action
- * @param {number} [config.criticalBonusDice=0] A number of bonus damage dice that are added for critical hits
- * @param {number} [config.criticalMultiplier=2] A critical hit multiplier which is applied to critical hits
- * @param {boolean} [config.multiplyNumeric=false] Multiply numeric terms by the critical multiplier
+ * @param {boolean} [config.critical=false]         Flag this roll as a critical hit for the purposes of
+ *                                                  fast-forward or default dialog action
+ * @param {number} [config.criticalBonusDice=0]     A number of bonus damage dice that are added for critical hits
+ * @param {number} [config.criticalMultiplier=2]    A critical hit multiplier which is applied to critical hits
+ * @param {boolean} [config.multiplyNumeric=false]  Multiply numeric terms by the critical multiplier
  * @param {boolean} [config.powerfulCritical=false] Apply the "powerful criticals" house rule to critical hits
- * @param {string} [config.criticalBonusDamage] An extra damage term that is applied only on a critical hit
+ * @param {string} [config.criticalBonusDamage]     An extra damage term that is applied only on a critical hit
  *
- * @param {boolean} [config.fastForward=false] Allow fast-forward advantage selection
- * @param {Event}[config.event]            The triggering event which initiated the roll
- * @param {boolean} [config.allowCritical=true] Allow the opportunity for a critical hit to be rolled
- * @param {string} [config.template]       The HTML template used to render the roll dialog
- * @param {string} [config.title]          The dice roll UI window title
- * @param {object} [config.dialogOptions]  Configuration dialog options
+ * @param {boolean} [config.fastForward=false]      Allow fast-forward advantage selection
+ * @param {Event}[config.event]                     The triggering event which initiated the roll
+ * @param {boolean} [config.allowCritical=true]     Allow the opportunity for a critical hit to be rolled
+ * @param {string} [config.template]                The HTML template used to render the roll dialog
+ * @param {string} [config.title]                   The dice roll UI window title
+ * @param {object} [config.dialogOptions]           Configuration dialog options
  *
- * @param {boolean} [config.chatMessage=true] Automatically create a Chat Message for the result of this roll
- * @param {object} [config.messageData={}] Additional data which is applied to the created Chat Message, if any
- * @param {string} [config.rollMode]       A specific roll mode to apply as the default for the resulting roll
- * @param {object} [config.speaker]        The ChatMessage speaker to pass when creating the chat
- * @param {string} [config.flavor]         Flavor text to use in the posted chat message
+ * @param {boolean} [config.chatMessage=true]       Automatically create a Chat Message for the result of this roll
+ * @param {object} [config.messageData={}]          Additional data which is applied to the created Chat Message, if any
+ * @param {string} [config.rollMode]                A specific roll mode to apply as the default for the resulting roll
+ * @param {object} [config.speaker]                 The ChatMessage speaker to pass when creating the chat
+ * @param {string} [config.flavor]                  Flavor text to use in the posted chat message
  *
- * @returns {Promise<DamageRoll|null>} The evaluated DamageRoll, or null if the workflow was canceled
+ * @returns {Promise<DamageRoll|null>}              The evaluated DamageRoll, or null if the workflow was canceled
  */
 export async function damageRoll({
     parts = [],

@@ -63,8 +63,8 @@
                         "value": 10,
                         "min": 0,
                         "max": 10,
-                        "temp": 0,
-                        "tempmax": 0
+                        "temp": null,
+                        "tempmax": null
                     },
                     "init": {
                         "value": 0,
@@ -625,7 +625,7 @@
                         "passive": ""
                     }
                 },
-                "int": {
+                "inf": {
                     "value": 0,
                     "ability": "cha",
                     "bonuses": {
@@ -699,7 +699,7 @@
                 }
             },
             "traits": {
-                "size": "med"
+                "size": null
             }
         },
         "vehicle": {
@@ -846,9 +846,7 @@
                 "bondOptions": {
                     "value": ""
                 },
-                "source": {
-                    "value": ""
-                }
+                "source": ""
             },
             "itemDescription": {
                 "description": {
@@ -868,25 +866,19 @@
                 "description": {
                     "value": ""
                 },
-                "source": {
-                    "value": ""
-                }
+                "source": ""
             },
             "fightingstyleDescription": {
                 "description": {
                     "value": ""
                 },
-                "source": {
-                    "value": ""
-                }
+                "source": ""
             },
             "lightsaberformDescription": {
                 "description": {
                     "value": ""
                 },
-                "source": {
-                    "value": ""
-                }
+                "source": ""
             },
             "speciesDescription": {
                 "data": "$characteristics-table",
@@ -903,16 +895,13 @@
                     "value": ""
                 },
                 "prerequisites": [""],
-                "source": {
-                    "value": ""
-                }
+                "source": ""
             },
             "physicalItem": {
                 "quantity": 1,
                 "weight": 0,
                 "price": 0,
                 "attunement": 0,
-                "equipped": false,
                 "rarity": "",
                 "identified": true
             },
@@ -1108,8 +1097,7 @@
                 "conditions": ""
             },
             "strength": 0,
-            "stealth": false,
-            "proficient": true
+            "stealth": false
         },
         "feat": {
             "templates": ["itemDescription", "activatedEffect", "action"],
@@ -1202,8 +1190,7 @@
             "templates": ["itemDescription", "physicalItem", "activatedEffect", "action", "mountable"],
             "weaponType": "simpleVW",
             "baseItem": "",
-            "properties": {},
-            "proficient": true
+            "properties": {}
         }
     }
 }
